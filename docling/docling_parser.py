@@ -4,7 +4,7 @@ import string
 import uuid
 import zipfile
 from io import BytesIO
-
+import time
 from PIL import Image
 from docling.backend.docling_parse_v2_backend import DoclingParseV2DocumentBackend
 from docling.backend.msword_backend import MsWordDocumentBackend
@@ -159,17 +159,22 @@ class DoclingParser(DocumentDetector):
     def parse_documents(self) -> str:
         """Parse document to markdown with optimized settings"""
         try:
+            logger.info(f"Parsing document of type: {self.doc_type}")
             source = self._get_document_source()
             converter = self._configure_converter()
+            start_time = time.time()
             conversion_result = converter.convert(source)
+            end_time = time.time()
+            logger.info(f"Time taken to parse page: {round(end_time - start_time, 2)} seconds")
             results = ""
             match self.is_md_response:
                 case True:
                     results =conversion_result.document.export_to_markdown()
                 case False:
-                    result =conversion_result.document.export_to_dict()
-                    results = " ".join([result_obj.get("text"," ") for result_obj in result.get('texts',[])])
+                    results =conversion_result.document.export_to_dict()
+                    # results = " ".join([result_obj.get("text"," ") for result_obj in result.get('texts',[])])
             return results
         except Exception as e:
             logger.error(f"Error parsing document: {str(e)}")
             raise DocumentFormatError(f"Failed to parse document: {str(e)}")
+        
