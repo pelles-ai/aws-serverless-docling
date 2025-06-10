@@ -5,6 +5,7 @@ from docling_parser import DoclingParser, logger
 
 
 def lambda_handler(event: dict, context):
+    """ The lambda function that parses the document and returns the result """
     logger.info(f"Received event: {json.dumps(event)}")
     try:
         # Validate presigned URL
