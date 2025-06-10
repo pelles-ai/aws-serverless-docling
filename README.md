@@ -435,15 +435,4 @@ SOFTWARE.
 - **Open Source Contributors** who make projects like this possible
 
 ---
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=nikhil/aws-serverless-docling&type=Date)](https://star-history.com/#nikhil/aws-serverless-docling&Date)
-
----
-
-**Made with ❤️ by [Nikhil](https://github.com/nikhil)**
-
-*If this project helped you, please consider giving it a star ⭐ and sharing it with others!*
-
 ---
