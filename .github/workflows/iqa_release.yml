@@ -2,7 +2,7 @@ name: IQA-serverless-document-parser
 
 on:
   push:
-    branches: [iqa]
+    branches: [main]
     paths:
       - 'docling/**'
 jobs:
